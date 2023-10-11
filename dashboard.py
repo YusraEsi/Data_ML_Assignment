@@ -6,10 +6,16 @@ import requests
 from src.training.train_pipeline import TrainingPipeline
 from src.constants import CM_PLOT_PATH, LABELS_MAP, SAMPLES_PATH
 
+# Importation des composants refacturés
+from src.components.training import render_training_section
+from src.components.inference import render_inference_section
+from src.components.eda import render_eda_section
 
+# Titre du tableau de bord Streamlit
 st.title("Resume Classification Dashboard")
 st.sidebar.title("Dashboard Modes")
 
+# Sélection des options depuis la barre latérale
 sidebar_options = st.sidebar.selectbox(
     "Options",
     ("EDA", "Training", "Inference")
@@ -19,9 +25,10 @@ if sidebar_options == "EDA":
     st.header("Exploratory Data Analysis")
     st.info("In this section, you are invited to create insightful graphs "
             "about the resume dataset that you were provided.")
+    render_eda_section()  # Appel du composant EDA
 elif sidebar_options == "Training":
     st.header("Pipeline Training")
-    st.info("Before you proceed to training your pipeline. Make sure you "
+    st.info("Before you proceed to training your pipeline, make sure you "
             "have checked your training pipeline code and that it is set properly.")
 
     name = st.text_input('Pipeline name', placeholder='Naive Bayes')
@@ -37,7 +44,7 @@ elif sidebar_options == "Training":
                 accuracy, f1 = tp.get_model_perfomance()
                 col1, col2 = st.columns(2)
 
-                col1.metric(label="Accuracy score", value=str(round(accuracy, 4)))
+                col1.metric(label="Accuracy score", value=str(round(accuracy, 4))
                 col2.metric(label="F1 score", value=str(round(f1, 4)))
 
                 st.image(Image.open(CM_PLOT_PATH), width=850)
@@ -45,12 +52,13 @@ elif sidebar_options == "Training":
                 st.error('Failed to train the pipeline!')
                 st.exception(e)
 
+    render_training_section()  # Appel du composant Training
 else:
     st.header("Resume Inference")
     st.info("This section simplifies the inference process. "
             "Choose a test resume and observe the label that your trained pipeline will predict."
     )
-    
+
     sample = st.selectbox(
                 "Resume samples for inference",
                 tuple(LABELS_MAP.values()),
@@ -58,7 +66,7 @@ else:
                 placeholder="Select a resume sample",
             )
     infer = st.button('Run Inference')
-    
+
     if infer:
         with st.spinner('Running inference...'):
             try:
@@ -76,3 +84,4 @@ else:
             except Exception as e:
                 st.error('Failed to call Inference API!')
                 st.exception(e)
+    render_inference_section()  # Appel du composant Inference
