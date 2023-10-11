@@ -1,5 +1,3 @@
-@@ -1,135 +1,83 @@
-# DNA Engineering ML Assignment
 # DNA Engineering - ML Assignment
 
 ## Requirements
@@ -49,10 +47,27 @@ You are given a `dataset` that contains a number of resumes with their labels.
 Each row of the dataset contains:
 - Label 1, 2, ..., 13 You will find the resume labels map under src/constants
 - Resume text
-## Task 1 - Code Refactoring
+## Task 1 :  Code Refactoring
+As mentioned, the existing Streamlit dashboard is divided into three main sections:
 
-The project contains by default:
-- A baseline `naive bayes pipeline` trained on the aforementioned dataset
-- An `API` that exposes an `inference endpoint` for predictions using the baseline pipeline
-- A streamlit dashboard divided on three parts `(Exploratory Data Analysis, Training, Inference)`
-I refactored the codebase following clean code guidelines. The main improvements are as follows:
+Exploratory Data Analysis
+Training
+Inference
+The current code for the dashboard is written as a single, lengthy Python script (dashboard.py), making it difficult to maintain and extend.
+
+Streamlit is a component-based data app creator that empowers you to develop interactive Python dashboards. In this task, we aim to enhance the code structure for improved clarity and maintainability.
+
+The monolithic dashboard.py script will be refactored into three separate files, each dedicated to one of the primary sections: EDA, Training, and Inference. These distinct components are now organized within the components directory.
+
+The code will be reformatted to enhance readability, making it more accessible for future maintenance.
+
+While Streamlit is designed to be user-friendly for non-frontend developers, complex code structures can still arise. Additionally, we have thoroughly reviewed the entire project codebase to identify and address any existing code irregularities, further elevating its quality.
+
+As previously outlined, the Streamlit dashboard you are working with is segmented into three essential sections:
+
+Exploratory Data Analysis
+Training
+Inference
+For example, we have corrected an issue related to the static title in the confusion matrix display. Previously, it remained fixed as 'Naive Bayes,' and now it dynamically adjusts based on the selected model.
+
+The existing code is currently consolidated within a single extensive Python script (dashboard.py). This consolidation makes it challenging to manage, optimize, read, maintain, and upgrade.
