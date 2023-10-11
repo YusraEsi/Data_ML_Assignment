@@ -19,7 +19,7 @@ class TrainingPipeline:
 
         text = df['resume']
         y = df['label']
-@@ -25,31 +29,43 @@ def __init__(self):
+def __init__(self):
         self.model = None
 
     def train(self, serialize: bool = True, model_name: str = 'model'):
@@ -68,7 +68,7 @@ class TrainingPipeline:
         )
 
         plot_path = REPORTS_PATH / f'{plot_name}.png'
-@@ -60,6 +76,6 @@ def render_confusion_matrix(self, plot_name: str = 'cm_plot'):
+def render_confusion_matrix(self, plot_name: str = 'cm_plot'):
 if __name__ == "__main__":
     tp = TrainingPipeline()
     tp.train(serialize=True)
