@@ -71,3 +71,54 @@ Inference
 For example, we have corrected an issue related to the static title in the confusion matrix display. Previously, it remained fixed as 'Naive Bayes,' and now it dynamically adjusts based on the selected model.
 
 The existing code is currently consolidated within a single extensive Python script (dashboard.py). This consolidation makes it challenging to manage, optimize, read, maintain, and upgrade.
+
+## Task 2 - Exploratory Data Analysis
+Your main objectives are as follows:
+
+Revise the code while adhering to "clean code" principles.
+Break down the script into separate components.
+Establish the necessary abstractions to facilitate future component additions.
+As part of this task, I conducted Exploratory Data Analysis and incorporated it into the initial section of the Streamlit dashboard. The EDA encompassed the following steps:
+
+Bonus points: You can earn extra credit if you identify and rectify any code irregularities throughout the entire project.
+
+Displayed a random sample of the dataset.
+Provided label counts for both raw and processed data.
+Presented summary statistics for the data.
+Implemented a user-friendly interface for selecting labels and specifying the number of words to visualize word clouds.
+
+## Task 3 - Training
+
+P.S: If required, data processing can be included in this section.
+My primary objective was to outperform the baseline pipeline. Here's a summary of the key actions I took:
+
+Preprocessed the data by removing unnecessary characters and stop words.
+Balanced the dataset using RandomOverSampler.
+Incorporated a selection box in the Streamlit web app, enabling users to choose their desired training model.
+I trained multiple models, and here are the results:
+
+## Task 4 - Inference
+
+The goal is to outperform the baseline pipeline, with a higher F1 score indicating better performance.
+
+In the Inference section of the dashboard, I made the following improvements:
+
+You can trigger the baseline pipeline's training in the second section of the dashboard.
+1. Saving Predictions:
+I introduced an "api/save" endpoint accessible through the dashboard to save prediction results into an SQLite table, including the resume and prediction.
+
+Choose the pipeline name and select whether to serialize it.
+2. Displaying Predictions:
+After each inference, I added a feature to display the prediction results, allowing users to conveniently review previous predictions.
+
+## Task 5 - Unit Testing
+As part of this project, I ensured that the code was thoroughly tested using unit tests.
+
+Specifically, I wrote two unit tests for the following API endpoints:
+
+1. api/inference:
+This test assesses the functionality of the inference endpoint.
+
+P.S: If you selected the "save" option at the beginning of training, you will be able to view the serialized pipeline under "models/pipeline_name."
+
+Feel free to explore the code and interact with the Streamlit dashboard to understand the components and view the results of each task.
