@@ -7,9 +7,9 @@ from src.training.train_pipeline import TrainingPipeline
 from src.constants import CM_PLOT_PATH, LABELS_MAP, SAMPLES_PATH
 
 # Importation des composants refacturés
-from src.components.training import render_training_section
-from src.components.inference import render_inference_section
-from src.components.eda import render_eda_section
+from src.utils.training import render_training_section
+from src.utils.inference import render_inference_section
+from src.utils.eda import render_eda_section
 
 # Titre du tableau de bord Streamlit
 st.title("Resume Classification Dashboard")
